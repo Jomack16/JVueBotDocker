@@ -1,0 +1,22 @@
+# discord bot token
+TOKEN = 'token.value.is.here.and.it.is.72.characters.long.11111111111111111111111'
+JELLYFIN_SESSIONS_URL = 'http://192.168.1.1:8096/Sessions'
+# Media browser token is API key created in Jellyfin dashboard.
+JELLYFIN_SESSIONS_HEADERS = {'Accept': 'application/json', 'Authorization': 'MediaBrowser Token="11111111111111111111111111111111"'}
+JELLYFIN_USERS_URL = 'http://192.168.1.1:8096/Users'
+JELLYFIN_POLICY_HEADERS = {'Accept': 'application/json', 'Authorization': 'MediaBrowser Token="11111111111111111111111111111111"'}
+# policy values are subjective. More are listed here: https://api.jellyfin.org/#tag/User/operation/UpdateUserPolicy
+# however the last 2 values are not arbitrary and must be included when setting policy for a user.
+JELLYFIN_POLICY_VALUES = {"EnableSharedDeviceControl": False, "EnableLiveTvManagement": False, "EnableLiveTvAccess": True, "LoginAttemptsBeforeLockout": 10, "AuthenticationProviderId": "Jellyfin.Server.Implementations.Users.DefaultAuthenticationProvider", "PasswordResetProviderId": "Jellyfin.Server.Implementations.Users.DefaultPasswordResetProvider"}
+# usernames to exclude from policy application, if any.
+# ["admin","premiere","etc"]
+JELLYFIN_POLICY_EXCLUSIONS = []
+# discord admin id
+ADMIN_ID = '268226536216330241'
+RADARR_API_KEY = '11111111111111111111111111111111'
+RADARR_URL = 'http://192.168.1.1:7878'
+AUTOSCAN_URL = 'http://192.168.1.1:3030/triggers/manual'
+AUTOSCAN_USERNAME = 'username'
+AUTOSCAN_PASSWORD = 'password'
+SONARR_API_KEY = '11111111111111111111111111111111'
+SONARR_URL = 'http://192.168.1.1:8989'

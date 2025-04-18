@@ -465,7 +465,7 @@ async def passwordreset(interaction: discord.Interaction, username_to_reset: str
     await interaction.response.defer()
     # findUsername (returns server name or false)
     # if findUsername Then do stuff
-        # reset
+        # reset S
     embed = discord.Embed(title=f'Password reset!', color=discord.Color.blurple())
     await asyncio.sleep(2)
     await interaction.followup.send(embed=embed)

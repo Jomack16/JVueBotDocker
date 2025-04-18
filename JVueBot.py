@@ -117,8 +117,8 @@ async def say(interaction: discord.Interaction, thing_to_say: str):
 async def streams(interaction: discord.Interaction):
     await interaction.response.defer()
     payload = {}
-    response1 = requests.request("GET", config.JELLYFIN_SESSIONS_URL, headers=config.JELLYFIN_SESSIONS_HEADERS,
-                                data=payload)
+    response1 = requests.request("GET", config.JELLYBELLY_SESSIONS_URL, headers=config.JELLYBELLY_SESSIONS_HEADERS,
+                                 data=payload)
     sessionCount = 0
     streamCount = 0
     transcodeCount = 0
@@ -156,8 +156,8 @@ async def streams(interaction: discord.Interaction):
 async def detailedstreams(interaction: discord.Interaction):
     await interaction.response.defer()
     payload = {}
-    response1 = requests.request("GET", config.JELLYFIN_SESSIONS_URL, headers=config.JELLYFIN_SESSIONS_HEADERS,
-                                data=payload)
+    response1 = requests.request("GET", config.JELLYBELLY_SESSIONS_URL, headers=config.JELLYBELLY_SESSIONS_HEADERS,
+                                 data=payload)
     sessionCount = 0
     streamCount = 0
     transcodeCount = 0
@@ -387,14 +387,14 @@ async def detailedstreams(interaction: discord.Interaction):
 
 @bot.tree.command(name="runpolicyupdate")
 async def runpolicyupdate(interaction: discord.Interaction):
-    response = requests.get(config.JELLYFIN_USERS_URL, headers=config.JELLYFIN_POLICY_HEADERS)
+    response = requests.get(config.JELLYBELLY_USERS_URL, headers=config.JELLYBELLY_POLICY_HEADERS)
     users_data = response.json()
-    usernames_to_exclude = config.JELLYFIN_POLICY_EXCLUSIONS
+    usernames_to_exclude = config.JELLYBELLY_POLICY_EXCLUSIONS
     for user in users_data:
         if user["Name"] in usernames_to_exclude:
             continue
         user_id = user["Id"]
-        user_endpoint = f"{config.JELLYFIN_USERS_URL}/{user_id}/Policy"
+        user_endpoint = f"{config.JELLYBELLY_USERS_URL}/{user_id}/Policy"
         # these policy settings are subjective. Others may want to set different values or control more things.
         # payload = json.dumps({
         #     "EnableSharedDeviceControl": False,
@@ -404,9 +404,9 @@ async def runpolicyupdate(interaction: discord.Interaction):
         #     "AuthenticationProviderId": "Jellyfin.Server.Implementations.Users.DefaultAuthenticationProvider",
         #     "PasswordResetProviderId": "Jellyfin.Server.Implementations.Users.DefaultPasswordResetProvider"
         # })
-        payload = json.dumps(config.JELLYFIN_POLICY_VALUES)
+        payload = json.dumps(config.JELLYBELLY_POLICY_VALUES)
 
-        response = requests.request("POST", user_endpoint, headers=config.JELLYFIN_POLICY_HEADERS, data=payload)
+        response = requests.request("POST", user_endpoint, headers=config.JELLYBELLY_POLICY_HEADERS, data=payload)
     await interaction.response.send_message(f'Ran policy update')
 
 
@@ -455,6 +455,18 @@ async def refreshtvshow(interaction: discord.Interaction, tv_show_name: str):
             value=f'Make sure spelling is correct.',
             inline=False
         )
+    await asyncio.sleep(2)
+    await interaction.followup.send(embed=embed)
+
+
+@bot.tree.command(name="passwordreset")
+@app_commands.describe(username_to_reset="Enter the jellyfin username.")
+async def passwordreset(interaction: discord.Interaction, username_to_reset: str):
+    await interaction.response.defer()
+    # findUsername (returns server name or false)
+    # if findUsername Then do stuff
+        # reset
+    embed = discord.Embed(title=f'Password reset!', color=discord.Color.blurple())
     await asyncio.sleep(2)
     await interaction.followup.send(embed=embed)
 

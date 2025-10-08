@@ -8,12 +8,12 @@ Discord bot for interacting with your Jellyfin server.
 1. Download the project and unzip into a folder
 2. Rename the ```config.py.example``` to ```config.py```
 3. Edit the variables in config for your environment.
-2. Enter that folder in your terminal session
-3. Run the command: ```docker image build -t jvuebot:0.0.10```
-4. NOTE: the name jvuebot is arbitrary, and the build number is arbitrary 
-5. Now you have a docker image in your local repo, that you can use to run a container.
-   7. ex. ```docker create --name=jvuebot --restart unless-stopped jvuebot:0.0.1```
-   8. ex. ```docker start jvuebot``` 
+4. Enter that folder in your terminal session
+5. Run the command: ```docker image build -t jvuebot:0.0.10```
+- NOTE: the name jvuebot is arbitrary, and the build number is arbitrary 
+6. Now you have a docker image in your local repo, that you can use to run a container.
+- ex. ```docker create --name=jvuebot --restart unless-stopped jvuebot:0.0.1```
+- ex. ```docker start jvuebot``` 
 
 NOTE: Whenever you want to change the configuration, you'll have to remove and rebuild the image/container. Will work on changing this to use editable environment variables in the future 
 
